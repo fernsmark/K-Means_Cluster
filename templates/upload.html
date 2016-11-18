@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Upload Image App</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <hr>
+	  
+	  <div class="header">	  
+	  <h6 class="text-muted">Your user id:{{ id }} </h6>  
+	  <h5 class="text-muted"><center>Your storage usage: {{usage}} KB and quota is {{limit}} KB</center></h5> 
+		<h3 class="text-muted"><center>Create your container folder.  </center></h3>
+	  </div>
+	  
+	  <div>      
+      <form name="container" action="upload" method="post" enctype="multipart/form-data">
+        <center><input type="text" name="container_name">
+		<center><input type="hidden" name= "passed_uid" value= "{{id}}">
+		<input type="hidden" name= "new_container_or_file" value= "container">
+		<input type="submit" value="Create"></center>
+      </form>
+      </div>
+	  
+	<!--  <ul id="navigation">
+    {% for item in cname %}
+        <li>{{ item[0] }}</li>
+    {% endfor %}
+    </ul> -->
+	  
+	  <hr>
+	  <div class="header">
+        <h3 class="text-muted"><center>Upload an File</center></h3>
+      </div>
+	        
+	  <div>      
+      <form name="upload" action="upload" method="post" enctype="multipart/form-data">
+		<center><select name="drop">
+		{% for item in cname %}
+		<option value= "{{item[0]}}">{{item[0]}}</option>
+		{% endfor %}	
+		</select> 
+		<!--<input type="hidden" name= "passed_container" value= "mark-container">-->
+        <input type="hidden" name= "new_container_or_file" value= "file">
+		<input type="hidden" name= "usage" value= "{{usage}}">
+		<input type="hidden" name= "limit" value= "{{limit}}">
+		<input type="hidden" name= "passed_uid" value= "{{id}}">
+		<input type="file" name="file">
+        <input type="submit" value="Upload"></center>
+      </form>
+      </div>
+	  
+	  <hr>
+	  <div class="header">
+        <h3 class="text-muted"><center>Download/Delete Files</center></h3>
+      </div>
+	  	  
+	  <div>
+			<!--<center><a href='list'>List of files</a></center> -->
+			Your Folders:
+			{% for item in cname %}
+			<form name="container" action="list" method="post" enctype="multipart/form-data"> 
+			{{item[0]}}
+			<input type="hidden" name= "passed_container" value= "{{item[0]}}">  
+			<input type="hidden" name= "passed_uid" value= "{{id}}">
+			<input type="hidden" name= "usage" value= "{{usage}}">
+			<input type="submit" value="View">
+			</form>
+			{% endfor %}
+      </div>
+	  <hr>
+	  
+    </div>
+  </body>
+
+</html>

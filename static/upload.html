@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Upload Image App</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/stylesheets/style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <hr>
+	  
+	  <div class="header">
+		<h3 class="text-muted"><center>Create your container folder. {{ id }}</center></h3>
+	  </div>
+	  
+	  <div>      
+      <form name="container" action="upload" method="post" enctype="multipart/form-data">
+        <center><input type="text" name="container_name">
+		<center><input type="text" name={{id}}>
+		<input type="submit" value="Create"></center>
+      </form>
+      </div>
+	  
+	  <div class="header">
+        <h3 class="text-muted"><center>Upload an Image</center></h3>
+      </div>
+	        
+	  <div>      
+      <form name="upload" action="upload" method="post" enctype="multipart/form-data">
+        <center><input type="file" name="file">
+        <input type="submit" value="Upload"></center>
+      </form>
+      </div>
+	  
+	  <hr>
+	  <div class="header">
+        <h3 class="text-muted"><center>Download/Delete Files</center></h3>
+      </div>
+	  	  
+	  <div>
+			<center><a href='list'>List of files</a></center>
+      </div>
+	  <hr>
+	  
+    </div>
+  </body>
+
+</html>
